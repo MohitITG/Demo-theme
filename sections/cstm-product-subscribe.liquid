@@ -1,0 +1,72 @@
+
+<div class="product_subs_outer">
+    <div class="page-width">
+  <div class="product_subs_inner">
+      
+    
+
+    {% if section.settings.header !=blank %}
+      <h2>{{ section.settings.header }}</h2>
+    {% endif %}
+    
+
+    <div class="subs_product">
+
+      
+      <div class="prod_img">
+
+        {% for img in section.settings.product.images %}
+          <div class="single_prod_img">            
+            <img src="{{ img | img_url : 'master' }}">
+          </div>
+        {% endfor %}
+        
+      </div>
+     
+
+      
+      <div class="prod_contents">
+
+        <h3>
+          {{ section.settings.product.title }}
+        </h3>
+
+        <h4>
+          {{ section.settings.product.price | money }}
+        </h4>
+
+        <div>
+          {{ section.settings.product.description  | truncate: 355  }}
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </div>
+      </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Product Subscription",
+    "settings": [
+      {
+        "type": "text",
+        "id": "header",
+        "label": "Heading"
+      },
+      {
+        "type": "product",
+        "id" : "product",
+        "label": "Select Product"
+      }    
+    ],
+    "presets": [
+      {
+        "name": "Product Subscription"
+      }
+    ]
+  }
+{% endschema %}

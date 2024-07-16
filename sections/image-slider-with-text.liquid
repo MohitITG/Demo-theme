@@ -1,0 +1,93 @@
+
+<div class="cstm_image_text_outer">
+  <div class="cstm_image_text_inner"> 
+
+    <div class="image_with_text_content" >
+      {% if section.settings.top_heading!=blank %}
+        <p>{{ section.settings.top_heading }}</p>
+      {% endif %}
+      {% if section.settings.center_heading!=blank %}
+        <h2>{{ section.settings.center_heading }}</h2>
+      {% endif %}
+
+      {% if section.settings.button_link %}
+        <span class="img_with_text_btn">
+          <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+        </span>  
+      {% endif %}
+      
+    </div>
+
+    <div class="auto_images_slider">
+
+      {% for block in section.blocks %}
+        {% if block.settings.block_img!= blank %}
+         <div class="slider_image">
+           <img src="{{ block.settings.block_img | img_url : 'master' }}">
+         </div>
+        {% endif %}
+      {% endfor %}
+      
+    </div>
+
+    {% if section.settings.overlay_img!=blank %}
+    <div class="overlay_image" >
+      <img src="{{ section.settings.overlay_img | img_url :'master' }}">
+    </div>
+    {% endif %}
+    
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Image Slider with Text",
+    "settings": [
+      {
+        "type": "text",
+        "id" : "top_heading",
+        "label" : "Heading Top"
+      },
+      {
+        "type": "text",
+        "id" : "center_heading",
+        "label" : "Heading Center"
+      },
+      {
+        "type": "text",
+        "id" : "button_text",
+        "label": "Button Text"
+      },
+      {
+        "type": "url",
+        "id" : "button_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "image_picker",
+        "id": "overlay_img",
+        "label": "Overlay Image"
+      }
+      
+    ],
+    "blocks": [
+      {
+        "type": "Image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "block_img",
+            "label": "Select Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Image Slider with Text"
+      }
+    ]
+  }
+{% endschema %}

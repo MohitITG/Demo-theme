@@ -1,0 +1,32 @@
+
+<div class="custom_video_banner" >
+  <div class="custom_video_inner">
+
+      <div class="video_container"> 
+           {{
+            section.settings.video
+            | video_tag: image_size: '1100x', loop: true, autoplay: true, controls: false, playsinline: true, muted: true
+          }}
+      </div>
+    
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "New Video banner",
+    "settings": [
+       {
+        "type": "video",
+        "id": "video",
+        "label": "Select Video"
+      }
+    ],
+    "presets": [
+      {
+        "name": "New Video Banner"
+      }
+    ]
+  }
+{% endschema %}
